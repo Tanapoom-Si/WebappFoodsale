@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebappFoodsale.Models.Food>;
+
+@{
+    ViewData["Title"] = "หน้าแรก";
+}
+
+<h1 class="text-center">Food Sale</h1>
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label>Start Date:</label>
+        <input type="date" name="startDate" value="@ViewData["StartDate"]" class="form-control" />
+
+        <label>End Date:</label>
+        <input type="date" name="endDate" value="@ViewData["EndDate"]" class="form-control" />
+        <br>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+</form>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <label>Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" /></label>
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrderDateSort"]">
+                    @Html.DisplayNameFor(model => model.OrderDate)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["RegionSort"]">
+                    @Html.DisplayNameFor(model => model.Region)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CitySort"]">
+                    @Html.DisplayNameFor(model => model.City)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CategorySort"]">
+                    @Html.DisplayNameFor(model => model.Category)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ProductSort"]">
+                    @Html.DisplayNameFor(model => model.Product)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["QuantitySort"]">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["UnitPriceSort"]">
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TotalPriceSort"]">
+                    @Html.DisplayNameFor(model => model.TotalPrice)
+                </a>
+            </th>
+            <th>แก้ไข</th>
+            <th>ลบ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var f in Model)
+        {
+            <tr>
+                <td>@f.OrderDate</td>
+                <td>@f.Region</td>
+                <td>@f.City</td>
+                <td>@f.Category</td>
+                <td>@f.Product</td>
+                <td>@f.Quantity</td>
+                <td>@f.UnitPrice</td>
+                <td>@f.TotalPrice</td>
+                <td><a class="btn btn-warning" asp-controller="Food" asp-action="Edit" asp-route-id="@f.OrderID">แก้ไข</a></td>
+                <td><a class="btn btn-danger" asp-controller="Food" asp-action="Delete" asp-route-id="@f.OrderID" onclick="return confirm('ต้องการลบหริอไม่')">ลบ</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

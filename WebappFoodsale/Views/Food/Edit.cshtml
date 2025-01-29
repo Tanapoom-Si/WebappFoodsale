@@ -1,0 +1,48 @@
+﻿@model Food
+@{
+    ViewData["Title"] = "แก้ไขข้อมูล";
+}
+
+<h1 class="text-center">แก้ไขข้อมูล Food Sale</h1>
+<form method="post" asp-controller="Food" asp-action="Edit">
+    <div>
+        <label asp-for="OrderDate"></label>
+        <input type="datetime-local" asp-for="OrderDate" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Region"></label>
+        <input type="text" asp-for="Region" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="City"></label>
+        <input type="text" asp-for="City" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Category"></label>
+        <input type="text" asp-for="Category" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Product"></label>
+        <input type="text" asp-for="Product" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Quantity"></label>
+        <input type="text" asp-for="Quantity" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="UnitPrice"></label>
+        <input type="text" asp-for="UnitPrice" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="TotalPrice"></label>
+        <input type="text" asp-for="TotalPrice" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary my-2">อัพเดท</button>
+</form>
